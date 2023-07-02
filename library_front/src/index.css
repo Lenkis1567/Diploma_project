@@ -1,0 +1,234 @@
+body {
+  margin: 0;
+  padding: 0;
+  
+}
+.App {
+  background-color: white;
+}
+.App-header{
+  width: 100%;
+  height: 40px;
+  background-color: rgb(247, 244, 244);
+}
+
+header {
+  background-color: rgb(10, 10, 10);
+  width: 100%;
+  height: 50px;
+  color: rgb(8, 8, 8);
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  display: flex;
+  justify-content: center; /* horizontally */
+  align-items: center;
+ }
+
+a {
+  text-decoration: none;
+  margin-left: 10px;
+  padding-right: 10px;
+}
+
+.link, p, a {
+  color: white;
+}
+
+#slogan {
+  color: black;
+}
+#profile, #profile_name {
+  position:absolute;
+  margin-left: 80%;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+#profile_name{
+  margin-left: -80%;
+}
+#jamb {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between;
+  margin-top: 20px;
+
+}
+#new, .description {
+  margin-top: 10px; 
+  margin-left: 20px;
+  /* width: 200px; */
+  font-family: 'Roboto', sans-serif;
+}
+.description {
+ font-size: 22px;
+  width: 90%;
+
+}
+
+.description h4 {
+  color:black;
+}
+
+#searchp {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 20px;
+}
+#text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  width: 49%;
+  text-align: left;
+}
+
+#jpic {
+  width: 49%;
+}
+
+#content {
+  margin-top: 20px;
+  
+}
+
+#stick {
+  margin-top: 20px;
+  padding: 0;
+  width: 90%;
+  height: 3px;
+  background-color: black;
+}
+.stickcont {
+  display: flex;
+     justify-content: center; /* horizontally */
+
+}
+
+#search_form{
+  padding-top: 50px;
+  display: flex;
+  justify-content: center; /* horizontally */
+  font-family: 'Roboto', sans-serif;
+}
+
+#newbooks {
+  padding-top: 10px;
+  padding-left: 10px;
+  display: flex;
+  justify-content:flex-start ; /* horizontally */
+  align-items:first baseline;
+  flex-wrap: wrap;
+  font-family: 'Roboto', sans-serif;
+}
+
+#addpic {
+  width: 60%;
+  margin-right: 20px;
+}
+
+#search_form_add, #register_form{
+  padding-top: 10px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  
+}
+
+#searchpic {
+  width:98%;
+}
+
+#googleBooks {
+  padding-top: 20px;
+  padding-left: 10px;
+  display: flex;
+  justify-content:flex-start ; /* horizontally */
+  align-items:first baseline;
+  flex-wrap: wrap;
+}
+
+h5, h6 {
+  font-weight: semi-bold;
+  font-size: 9px;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+}
+
+
+h6 {
+  font-weight: 200;
+}
+
+h3 {
+  color: black;
+  font-size: 1.17em;
+}
+
+.error-message {
+  color: red;
+}
+.book {
+  width:80px;
+  padding-right: 15px;
+}
+
+form {
+  padding-left: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-label {
+  display: inline-block;
+  width: 150px; /* Adjust the width as needed */
+  text-align: right;
+  margin-right: 10px;
+}
+
+.form-input {
+  display: inline-block;
+  width: 200px; /* Adjust the width as needed */
+}
+
+.book.selected {
+  border: 3px solid black;
+}
+
+
+#bookForm {
+margin-bottom: 20px;
+}
+
+input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+button{
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 3px;
+}
+
+.newbookList{
+  width: 90px;
+  margin: 10px;
+}
+#age_range, input {
+  padding: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.alt-text {
+  font-size: 0; 
+}
