@@ -34,14 +34,23 @@ a {
   color: white;
 }
 
+#warning {
+  color: red
+}
+#confirm {
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+}
 #slogan {
   color: black;
 }
 #profile, #profile_name {
   position:absolute;
   margin-left: 80%;
-  margin-top: 20px;
+
   font-size: 18px;
+  color: white;
 }
 
 #profile_name{
@@ -68,8 +77,11 @@ a {
 
 .description h4 {
   color:black;
+  
 }
-
+h4 {
+  font-family: 'Roboto', sans-serif;
+}
 #searchp {
   display: flex;
   align-items: center; 
@@ -138,14 +150,23 @@ a {
 }
 
 #searchpic {
-  width:98%;
+  width:100%;
 }
 
-#googleBooks {
+#googleBooks{
   padding-top: 20px;
   padding-left: 10px;
   display: flex;
   justify-content:flex-start ; /* horizontally */
+  align-items:first baseline;
+  flex-wrap: wrap;
+}
+
+#booklist {
+  padding-top: 20px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: flex-start ; /* horizontally */
   align-items:first baseline;
   flex-wrap: wrap;
 }
@@ -155,24 +176,50 @@ h5, h6 {
   font-size: 9px;
   font-family: 'Roboto', sans-serif;
   color: black;
+  font-family: 'Roboto', sans-serif;
 }
 
+#searchresults{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
+#notfound {
+  font-size: 20px;
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 h6 {
   font-weight: 200;
+  font-family: 'Roboto', sans-serif;
 }
 
 h3 {
   color: black;
   font-size: 1.17em;
+  font-family: 'Roboto', sans-serif;
 }
 
 .error-message {
   color: red;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 .book {
   width:80px;
   padding-right: 15px;
+}
+
+.newbookList img {
+  width: 70px;
 }
 
 form {
@@ -185,11 +232,13 @@ form {
   width: 150px; /* Adjust the width as needed */
   text-align: right;
   margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .form-input {
   display: inline-block;
   width: 200px; /* Adjust the width as needed */
+  font-family: 'Roboto', sans-serif;
 }
 
 .book.selected {
@@ -231,4 +280,78 @@ code {
 
 .alt-text {
   font-size: 0; 
+}
+
+/* =========Book========== */
+.book-container {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.message-input {
+  width: 300px;
+  height: 200px;
+  padding: 10px;
+  margin: 10px auto;
+  display: block;
+}
+
+.send-button {
+  margin: 10px auto;
+  display: block;
+}
+
+p {
+  color:black
+}
+
+/* =============Projile=========== */
+.messages-table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: 95%;
+}
+
+.messages-table th,
+.messages-table td {
+  border: 1px solid black;
+  padding: 8px;
+  word-break: break-word;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+.wide-column {
+  width: 20%;
+}
+
+.narrow-column {
+  width: 10%;
+}
+
+.input-answer {
+  width: 100%;
+  height: 80px;
+  resize: vertical;
+  margin: 0;
+  padding: 0;
+  resize: vertical;
+  font-family: 'Roboto', sans-serif;
+}
+
+.read-message {
+  background-color: white;
+  color: black; /* Set the text color to black */
+  text-shadow: none; /* Remove any text shadow */
+  border: none; /* Remove any border */
+}
+
+.unread {
+  background-color: rgb(155, 151, 151);
+}
+
+#userinfo{
+  font-family: 'Roboto', sans-serif;
 }

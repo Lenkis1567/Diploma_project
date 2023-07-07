@@ -1,5 +1,4 @@
 import Urls from './Urls'
-import {requestPOST} from './BasicFunctions';
 import {requestGET} from './BasicFunctions';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -41,7 +40,7 @@ function Indexpage() {
         <div id="new">
             <h3>These are the last books we've received:</h3>
             <div id="newbooks">
-                {books.slice(0, 18).map((book) => (
+                {books.slice(0, 24).map((book) => (
                 <Link to={`/books/${book.id}`} key={book.id} className="newbookList">
                 <h5>Title: {book.book.title}</h5>
                 <h6>Author: {book.book.author}</h6>

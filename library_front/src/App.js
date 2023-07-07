@@ -9,6 +9,8 @@ import About from './components/About'
 import Search from './components/Search'
 import Register from './components/Register'
 import Book from './components/Book'
+import Profile from './components/Profile'
+import MyBooks from './components/MyBooks'
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} /> 
             <Route path="/books/:id" element={<Book />} />
+            <Route path="/mybooks" element={<MyBooks/>} />
+            <Route path="/profile/:user_profile_id" element={<Profile/>}/> 
           </Routes>
        </div>
 

@@ -2,29 +2,22 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {requestPOST} from './BasicFunctions';
 import { requestGET } from './BasicFunctions';
-import Urls from './Urls'
+import Urls from './Urls';
+
 
 function Navbar() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [user, setUser] = useState(localStorage.getItem('user') || '');
+  const [id, setUserid]= useState(localStorage.getItem('user_profile_id')|| '')
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect((e) => {
       if (token) {
         currentUserInfo()
-        console.log("token after refresh", token )
+        console.log("token after refresh:", token, "user:", user, id )
       }
      }, []);
 
-  //  async function currentUserInfo(){
-  //       let res_logged = await requestGET(Urls.currentUser)
-  //       console.log(res_logged);
-  //       if (res_logged.ok) {
-  //         const user = await res_logged.json();
-  //         setUser(user.username);
-  //       } else {
-  //         console.log("problem with getting user")
-  //       }
     function currentUserInfo(){
       let res_logged = localStorage.user
       console.log(res_logged);
@@ -47,14 +40,14 @@ function Navbar() {
 
   return (
     <header>
-      <p id="profile_name">{user}</p>
+      <Link to={`/profile/${id}`} id="profile_name">{user}</Link>
       <Link to="/search">Search</Link>
       <Link to="/add">Add</Link>
       <Link to="/">
-        <img src="logo.png" width="60px" alt="Logo" />
+        <img src="/logo.png" width="60px" alt="logo" />
       </Link>
       <Link to="/about">About us</Link>
-      <Link to="/news">News</Link>
+      <Link to="/news">Rules</Link>
       <p id="profile">
         {token ? (
           <>

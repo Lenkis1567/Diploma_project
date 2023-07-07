@@ -11,6 +11,9 @@ import Urls from './Urls'
 function Add() {
     const [googlebooks, setGoogleBooks] = useState([]);
     const [bookselected, setSelectedbook] = useState({})
+    const [token, setToken] = useState(localStorage.getItem('token') || '');
+    const [msg, setMessage] = useState("");
+    const [form, setForm] = useState('');
   
     async function searchGoogle(event) {
       event.preventDefault();
@@ -18,14 +21,15 @@ function Add() {
       const results = await search40books(searchInput);
       console.log (results)
       setGoogleBooks(results); 
+      setMessage('')
     };
 
    const selectBook = async(index)=> {
         const selectedBook = googlebooks[index];
         console.log('Selected book:', selectedBook.title, selectedBook.author, selectedBook.img, selectedBook.googl_id, selectedBook.age_range);
         // setSelectedbook(selectedBook);
-        console.log("newstate of selected book", selectedBook)
-        console.log("bookselected.googl_id", selectedBook.googl_id)
+        console.log("newstate of selected book", selectedBook, "bookselected.googl_id", selectedBook.googl_id)
+        
 
         const result = await searchByGoogleId(selectedBook.title, selectedBook.author, selectedBook.age_range, selectedBook.googl_id, selectedBook.img)
         console.log("Results of search in books", result)
@@ -36,6 +40,7 @@ function Add() {
             const formHtml = await createForm(selectedBook.title, selectedBook.author, selectedBook.age_range, selectedBook.googl_id, selectedBook.img);
             document.getElementById('bookFormDiv').innerHTML = formHtml;
           }
+
     }
 
     async function addBook(e) {
@@ -49,34 +54,50 @@ function Add() {
                 actual: true,
                 age_range: form.elements.age_range.value, 
               }
-              console.log("bookinfo", bookInfo)
+              
 
-            let token = 1001;
             let res = await requestPOST(Urls.addBook, bookInfo, token);
             console.log('Book added to books:', res);
-            // let div = document.querySelector('#googleBooks');
-            // div.innerHTML = '<h3>Your book added to the library! You can add some more books.</h3>';
-            // let listDiv = document.querySelector('#bookFormDiv');
-            // listDiv.innerHTML = '';
-            // await addBookToLibrary(res, form.elements.comment.value);
-            // form = document.querySelector('#search');
-            // form.reset();
+            await addBookToLibrary(res, form.elements.comment.value);
           }
         
             async function addBookToLibrary(res, comment) {
-            let libraryInfo = {
-              book: res.id,
-            //   user: Number(localStorage.getItem('user_profile_id')),
-            user:1000,
-              comment: comment,
+              let userProfileid = localStorage.getItem('user_profile_id')
+              console.log("USERRR", userProfileid);
+              let libraryInfo = {
+                book: res.id,
+                user: Number(userProfileid),
+                comment: comment,
+              }
+              console.log("libraryInfo", libraryInfo);
+              res = await requestPOST(Urls.addBookToLibrary, libraryInfo, token);
+              console.log('Book added to library:', res, res.code);
+              if (res.code ===401) {
+                setMessage(
+                  <p id='warning'>
+                    You are not logged in, please go to the{" "}
+                    <a href="http://localhost:3000/login" style={{ color: "red" }}>
+                      Login page
+                    </a>
+                  </p>
+                );
+                } else if(res.code ===400) {
+                  setMessage(
+                    <p id='warning'>
+                      Please, choose age and add your comments about the book
+  
+                    </p>
+                  );
+                }else if (res.addDate) {
+                setMessage(
+                  <p id='confirm'>
+                    You've added the book to our library, you can add some more 
+
+                  </p>
+                );
+              } 
             }
-            console.log("libraryInfo", libraryInfo);
-            // let token = localStorage.getItem('token');
-            let token = 1001;
-            console.log("token", token);
-            res = await requestPOST(Urls.addBookToLibrary, libraryInfo, token);
-            console.log('Book added to library:', res);
-          }
+
 
 
     return (
@@ -98,10 +119,11 @@ function Add() {
                 <h3>Type a title or author of the book to choose the right version and get a full info about the book you'd like to add:
                 </h3>
                 <form method="GET" id="search" onSubmit={searchGoogle}>
-                    <input id="searchInput" className="search" />
+                    <input id="searchInput" className="search" name='search' required/>
                     <button type="submit">Search a book</button>
                 </form>
                 <div id="bookFormDiv" onSubmit={addBook}>
+                  {msg}
                 </div>
                 <div id="googleBooks">
                 {googlebooks.map((book, index) => (

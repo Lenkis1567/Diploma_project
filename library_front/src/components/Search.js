@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getAllAgeRange } from "./GetAllAgeRange";
+import Urls from './Urls'
+import {requestGET} from './BasicFunctions';
+import { Link } from 'react-router-dom';
+
 
 function Search() {
   const [ageOptions, setAgeOptions] = useState([]);
@@ -14,18 +18,27 @@ function Search() {
     fetchAgeRange();
   }, []);
 
-  const searchBooks = async (event) => {
-    event.preventDefault();
+  async function librarySearchBooks(e) {
+    e.preventDefault();
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(e.target);
     const title = formData.get('title');
     const author = formData.get('author');
     const ageRange = formData.get('age_range');
+    console.log("formData: ", title, author, ageRange);
 
-    // Perform the search query and update the books state
-    // const result = await searchBooksByCriteria(title, author, ageRange);
-    setBooks(formData);
+    let params = {
+      title,
+      author,
+      ageRange
+    }
+
+    let res = await requestGET(Urls.searchBookInLibrary, params);
+    console.log("Result", res);
+    if (res.length===0) setBooks([{ Result: 'Not found' }]);
+    else {setBooks(res)}
   };
+
 
   return (
     <main id="content">
@@ -42,7 +55,7 @@ function Search() {
       </div>
 
       <div id="search_form_add">
-        <form method="GET" id="search" onSubmit={searchBooks}>
+        <form method="GET" id="search" onSubmit={librarySearchBooks}>
           <input name="title" placeholder="Enter book title" />
           <input name="author" placeholder="Enter author name" />
 
@@ -60,17 +73,25 @@ function Search() {
       </div>
 
       {/* Display the list of books */}
-      <div id="book_list">
-        {books.map((book) => (
-          <div key={book.id} className="book">
-            <h5>{book.title}</h5>
-            <h6>{book.author}</h6>
-            <img src={book.img} alt="Book cover" />
+      <div id="booklist">
+      {books[0] && books[0].Result === 'Not found' ? (
+          <div id="searchresults">
+            <h5 id='notfound'>Book not found, try some other books</h5>
           </div>
-        ))}
+        ) : (
+          books.map((book) => (
+            
+            <Link to={`/books/${book.id}`} key={book.id} className="newbookList">
+              <h5>{book.titel}</h5>
+              <h6>{book.author}</h6>
+              <img src={book.img} alt="" />
+            </Link>
+          ))
+        )}
       </div>
     </main>
   );
+
 }
 
 export default Search;

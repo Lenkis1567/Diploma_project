@@ -52,3 +52,72 @@ export async function requestGET(url, options={}){
 		
 	}
 }
+
+export async function requestGETToken(url, options={}){
+	const param = new URLSearchParams();
+	for (let p in options){
+		param.append(p, options[p])
+	}
+	// console.log('GET запрос:', url + '?' + param);
+	try {
+		const res = await fetch(url + '?' + param);
+		// console.log("results of requestGET", res);
+		if (!res.ok){
+			return("Error in Get Request(dima)");
+		} else {
+			let res_Js = res.json();
+			return res_Js;
+		}
+	} catch (error) {
+		
+	}
+}
+
+
+export async function requestGETtoken(url, options = {}, token) {
+	const param = new URLSearchParams();
+	for (let p in options) {
+	  param.append(p, options[p]);
+	}
+  
+	try {
+	  const res = await fetch(url + '?' + param, {
+		headers: {
+		  Authorization: 'Token ' + token 
+		}
+	  });
+  
+	  if (!res.ok) {
+		return "Error in GET Request";
+	  } else {
+		let res_Js = res.json();
+		return res_Js;
+	  }
+	} catch (error) {
+	  console.error(error);
+	}
+  }
+
+  export async function updateMessage (id) {
+	console.log("id in undatemessage func", id)
+	return fetch(`http://127.0.0.1:8000/api/v1/messages/change`, {
+	  method: 'PUT',
+	  headers: {
+		'Content-Type': 'application/json',
+	  },
+	  body: JSON.stringify({ id }),
+	})
+	// .then(
+	// 	response => {
+	//   if (response.status!=200) {
+	// 	console.log('RESSSPONNSS', response)
+	// 	return
+	//   }
+	// }
+	
+	// )
+
+	.catch(error => {
+	  throw new Error('An error occurred while updating the message.');
+	});
+  };
