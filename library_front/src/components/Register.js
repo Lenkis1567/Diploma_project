@@ -50,6 +50,9 @@ function Register() {
                 console.log('After creating a profile',resp);
                 if (resp.ok){
                     localStorage.setItem('user_profile_id', resp.user_profile_id);
+
+                    window.location.href = '/'
+
                     
                 }
             }
