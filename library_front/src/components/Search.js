@@ -56,10 +56,10 @@ function Search() {
 
       <div id="search_form_add">
         <form method="GET" id="search" onSubmit={librarySearchBooks}>
-          <input name="title" placeholder="Enter book title" />
-          <input name="author" placeholder="Enter author name" />
+          <input name="title" placeholder="Enter book title" style={{ height: '26px' }} />
+          <input name="author" placeholder="Enter author name" style={{ height: '26px' }}/>
 
-          <select name="age_range" id="age_range">
+          <select name="age_range" id="age_range" style={{ height: '33px' }}>
             <option value="">-- Select an option --</option>
             {ageOptions.map(([age, value]) => (
               <option key={age} value={value}>
@@ -68,7 +68,16 @@ function Search() {
             ))}
           </select>
 
-          <button type="submit">Search a book</button>
+          <button type="submit" style={{
+              margin: '10px',
+              backgroundColor: 'black',
+              color: 'white',
+              padding: '9px 20px',
+              border: 'none',
+              borderRadius: '5px',
+              height: '33px'
+            }}>Search a book
+          </button>
         </form>
       </div>
 

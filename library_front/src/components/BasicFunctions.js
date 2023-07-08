@@ -107,16 +107,6 @@ export async function requestGETtoken(url, options = {}, token) {
 	  },
 	  body: JSON.stringify({ id }),
 	})
-	// .then(
-	// 	response => {
-	//   if (response.status!=200) {
-	// 	console.log('RESSSPONNSS', response)
-	// 	return
-	//   }
-	// }
-	
-	// )
-
 	.catch(error => {
 	  throw new Error('An error occurred while updating the message.');
 	});

@@ -119,8 +119,17 @@ function Add() {
                 <h3>Type a title or author of the book to choose the right version and get a full info about the book you'd like to add:
                 </h3>
                 <form method="GET" id="search" onSubmit={searchGoogle}>
-                    <input id="searchInput" className="search" name='search' required/>
-                    <button type="submit">Search a book</button>
+                    <input id="searchInput" className="search" name='search' required style={{height: '28px'}}/>
+                    <button type="submit" style={{
+                        margin: '10px',
+                        backgroundColor: 'black',
+                        color: 'white',
+                        padding: '9px 20px',
+                        border: 'none',
+                        borderRadius: '5px',
+                        height: '33px'
+                      }}>Search a book
+                    </button>
                 </form>
                 <div id="bookFormDiv" onSubmit={addBook}>
                   {msg}

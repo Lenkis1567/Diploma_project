@@ -4,6 +4,7 @@ import { requestGET, requestPOST, updateMessage } from './BasicFunctions';
 import Urls from './Urls';
 import { Link } from 'react-router-dom';
 import { AddRent } from './AddRent'
+import { CheckRents } from './CheckRents';
 
 function Profile(props) {
   const [user, setUser] = useState(localStorage.getItem('user') || '');
@@ -131,7 +132,7 @@ function Profile(props) {
         console.log("Message id", id);
       
         try {
-          const res = await updateMessage(id); // Assuming updateMessage is an asynchronous function
+          const res = await updateMessage(id); 
           console.log(res.data);
         } catch (error) {
           console.log('Error occurred while updating the message:', error);
@@ -188,12 +189,13 @@ function Profile(props) {
                   <h3>User: {user}</h3>
                   <h4>First Name: {profileData.first_name}</h4>
                   <h4>Last Name: {profileData.last_name}</h4>
+                  <Link to={{ pathname: '/mybooks'}} style={{ textDecoration: 'none'}}>
+                    <h3 style={{ color: 'violet'}}>My books</h3>
+                  </Link>
                 </div>
                 <div style={{ marginLeft: 'auto', marginRight: '40px' }}>
                 <h3 id='userinfo' style={{ padding: '20px', margin: '0'}}>{InfoMessage}</h3>
-                <Link to={{ pathname: '/mybooks'}} style={{ textDecoration: 'none'}}>
-                    <h3 style={{ color: 'violet'}}>My books</h3>
-                </Link>
+
                 </div>
               </div>
 
@@ -262,18 +264,31 @@ function Profile(props) {
                           Send
                         </button>
                         
-                      <button
-                        onClick={() =>
-                          AddRent(
-                            message.rent_user_id,
-                            new Date().toISOString(), // pass the current time as the start_date
-                            message.book_id
-                          )
-                        }
+                        <button
+                            onClick={async () => {
+                              const hasRent = await CheckRents(
+                                Number(localStorage.getItem('user_profile_id')),
+                                Number(message.book_id)
+                              );
+
+                            if (!hasRent) {
+                              AddRent(
+                                message.rent_user_id,
+                                new Date().toISOString(), // pass the current time as the start_date
+                                message.book_id
+                              );
+                            } else {
+                              setInfoMessage(
+                                <p id="warning" style={{ marginBottom: '0' }}>
+                                  The book is already rented
+                                </p>
+                              );
+                            }
+                          }}
                         style={{
                           margin: '10px',
                           display: 'block',
-                          backgroundColor: 'black',
+                          backgroundColor: 'violet',
                           color: 'white',
                           padding: '10px 20px',
                           border: 'none',

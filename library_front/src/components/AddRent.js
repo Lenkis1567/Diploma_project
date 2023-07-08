@@ -2,7 +2,6 @@ import Urls from './Urls'
 import {requestGET, requestPOST} from './BasicFunctions';
 
 export async function AddRent(rent_user, start_date, book) {
-    let added = false
     let data ={
         'rent_user':rent_user,
         'start_date': start_date,
