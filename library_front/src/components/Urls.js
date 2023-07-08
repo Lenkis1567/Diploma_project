@@ -16,7 +16,8 @@ const Urls = {
 	searchMessages:			'http://127.0.0.1:8000/api/v1/messages/search',
 	listMessages:			'http://127.0.0.1:8000/api/v1/messages/list',
 	changeStatusMessage: 	'http://127.0.0.1:8000/api/v1/messages/change',
-	getAllRents:			'http://127.0.0.1:8000/api/v1/rents/list'
+	getAllRents:			'http://127.0.0.1:8000/api/v1/rents/list',
+	addRent:				'http://127.0.0.1:8000/api/v1/rents'
 
 }
 export default Urls

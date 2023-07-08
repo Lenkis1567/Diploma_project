@@ -3,6 +3,7 @@ import { requestGETtoken } from './BasicFunctions';
 import { requestGET, requestPOST, updateMessage } from './BasicFunctions';
 import Urls from './Urls';
 import { Link } from 'react-router-dom';
+import { AddRent } from './AddRent'
 
 function Profile(props) {
   const [user, setUser] = useState(localStorage.getItem('user') || '');
@@ -14,6 +15,7 @@ function Profile(props) {
   const [messageTexts, setMessageTexts] = useState([]);
   const [InfoMessage, setInfoMessage] = useState('');
   const [readStatus, setReadStatus] = useState([]);
+
 //   const [readStatusId, setReadStatusId] = useState();
 
     useEffect(() => {
@@ -189,8 +191,8 @@ function Profile(props) {
                 </div>
                 <div style={{ marginLeft: 'auto', marginRight: '40px' }}>
                 <h3 id='userinfo' style={{ padding: '20px', margin: '0'}}>{InfoMessage}</h3>
-                <Link to={{ pathname: '/mybooks'}} style={{ textDecoration: 'none' }}>
-                    <h3>My books</h3>
+                <Link to={{ pathname: '/mybooks'}} style={{ textDecoration: 'none'}}>
+                    <h3 style={{ color: 'violet'}}>My books</h3>
                 </Link>
                 </div>
               </div>
@@ -259,7 +261,28 @@ function Profile(props) {
                         >
                           Send
                         </button>
-                      </td>
+                        
+                      <button
+                        onClick={() =>
+                          AddRent(
+                            message.rent_user_id,
+                            new Date().toISOString(), // pass the current time as the start_date
+                            message.book_id
+                          )
+                        }
+                        style={{
+                          margin: '10px',
+                          display: 'block',
+                          backgroundColor: 'black',
+                          color: 'white',
+                          padding: '10px 20px',
+                          border: 'none',
+                          borderRadius: '5px'
+                        }}
+                      >
+                        Rent
+                      </button>
+                    </td>
                     </tr>
                   ))}
                 </tbody>
@@ -278,6 +301,7 @@ function Profile(props) {
                         </tr>
                     </thead>
                     <tbody>
+
                          {/* Render table rows for messages as renter */}
                         {messagesAsRentuser.map((message, index) => (
                         <tr key={message.id} className={readStatus[index + messagesAsOwner.length] ? 'read' : 'unread'}>
