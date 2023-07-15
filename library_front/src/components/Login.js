@@ -39,24 +39,23 @@ function Login() {
                  <h3 className={error ? "error-message" : ""}>{loginGood}</h3>
             </div>
             <div id="register_form">
-            <form  id="register" onSubmit={(e)=>{
-                        e.preventDefault()
-                        eventLoginUserFunction(e);
-                        }}>
-                    <label htmlFor="login">Your login:</label>
-                    <input type="login" className="login" id="login" placeholder='login'/>
-                    <br/>
-                    <label htmlFor="password">Your password:</label>
-                    <input type="password" className="password" id="password" placeholder='password' />
-                    <br/>
-                    <button type="submit">Submit</button>
+                <form  id="register" onSubmit={(e)=>{
+                            e.preventDefault()
+                            eventLoginUserFunction(e);
+                            }}>
+                        <label htmlFor="login">Your login:</label>
+                        <input type="login" className="login" id="login" placeholder='login'/>
+                        <br/>
+                        <label htmlFor="password">Your password:</label>
+                        <input type="password" className="password" id="password" placeholder='password' />
+                        <br/>
+                        <button type="submit">Submit</button>
                 </form>
             </div>
-
         </main>
         
-    )
-    }
+     )
+}
 
 
     export default Login;
