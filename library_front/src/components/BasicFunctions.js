@@ -1,3 +1,4 @@
+import Urls from './Urls'
 
 export async function requestPOST(url, dataObj={}, token=''){
 	let requestData={
@@ -100,7 +101,7 @@ export async function requestGETtoken(url, options = {}, token) {
 
   export async function updateMessage (id) {
 	console.log("id in undatemessage func", id)
-	return fetch(`http://127.0.0.1:8000/api/v1/messages/change`, {
+	return fetch(Urls.changeStatusMessage, {
 	  method: 'PUT',
 	  headers: {
 		'Content-Type': 'application/json',
