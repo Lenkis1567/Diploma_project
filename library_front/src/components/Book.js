@@ -11,7 +11,7 @@ function Book() {
 
   useEffect(() => {
     async function getAllBooks() {
-      let res = await requestGET('http://127.0.0.1:8000/api/v1/library/list', []);
+      let res = await requestGET(Urls.allBooksInLibrary, []);
       let filteredBook = res.filter(item => item.id === parseInt(id));
       console.log("filtered book", filteredBook)
       setBooks(filteredBook);
