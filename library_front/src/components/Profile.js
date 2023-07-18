@@ -101,7 +101,7 @@ function Profile(props) {
             setInfoMessage(
               <p id="warning">
                 You are not logged in, please go to the{' '}
-                <a href="http://localhost:3000/login" style={{ color: 'red' }}>
+                <a href="/login" style={{ color: 'red' }}>
                   Login page
                 </a>
               </p>
