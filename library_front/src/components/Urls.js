@@ -7,7 +7,7 @@ const Urls = {
 	currentUser:			BASE_URL + '/api/v1/auth/users/me/',
 	createProfile:			BASE_URL + '/api/v1/profile',
 	searchProfile: 			BASE_URL + '/api/v1/profile/search',
-	getAllBooks:			BASE_URL + '/api/v1/book/',
+	getAllBooks:			'https://libraryback-w7jx.onrender.com' + '/api/v1/book/',
 	addBook:				BASE_URL + '/api/v1/book/',
 	getAllAgeRange:			BASE_URL + '/api/v1/age/',
 	searchByGoogleID:		BASE_URL + '/api/v1/ggl/',
