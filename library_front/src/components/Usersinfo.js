@@ -1,3 +1,4 @@
+import Urls from './Urls'
 export async function Usersinfo(){
 	
 	// let token=localStorage.getItem('token');
@@ -10,7 +11,7 @@ export async function Usersinfo(){
 			'Authorization' : 'Token ' + token
 		}
 	}
-	let res = await fetch(createUser, reqData)
+	let res = await fetch(Urls.createUser, reqData)
 	let resJS = await res.json();
 	console.log("USERINFO", res, resJS)
     return resJS
