@@ -8,7 +8,7 @@ function Indexpage() {
 
     async function getAllBooks(){
         // e.preventDefault();
-        let res = await requestGET(Urls.getAllBooks,[]);
+        let res = await requestGET(Urls.allBooksInLibrary,[]);
         setBooks(res)
     }
 
