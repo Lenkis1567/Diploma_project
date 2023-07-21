@@ -8,7 +8,7 @@ function Indexpage() {
 
     async function getAllBooks(){
         // e.preventDefault();
-        let res = await requestGET('http://127.0.0.1:8000/api/v1/library/list',[]);
+        let res = await requestGET(getAllBooks,[]);
         setBooks(res)
     }
 

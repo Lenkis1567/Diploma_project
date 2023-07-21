@@ -10,7 +10,7 @@ export async function Usersinfo(){
 			'Authorization' : 'Token ' + token
 		}
 	}
-	let res = await fetch('http://127.0.0.1:8000/api/v1/auth/users/', reqData)
+	let res = await fetch(createUser, reqData)
 	let resJS = await res.json();
 	console.log("USERINFO", res, resJS)
     return resJS
